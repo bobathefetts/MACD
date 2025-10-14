@@ -1,0 +1,5 @@
+
+seed: 42
+experiment:
+  run_dir: outputs
+  notes: "MACD v3 skeleton"

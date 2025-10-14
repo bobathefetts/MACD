@@ -1,0 +1,8 @@
+
+model:
+  name: "mock_model"
+  backend: "mock"
+  params:
+    device: "auto"  # Auto-detect: GPU if available, else CPU
+    seed: 42
+    deterministic: true
