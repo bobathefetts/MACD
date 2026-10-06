@@ -1,2 +1,0 @@
-# Experiment tracking dependencies - optional
-wandb==0.16.1
