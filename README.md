@@ -15,18 +15,23 @@ It runs on a laptop with no GPU in a couple of seconds (mock backend), against a
 (vLLM, Ollama, llama.cpp), or in-process with Hugging Face Transformers and real LoRA fine-tuning.
 
 ```mermaid
-flowchart LR
-    A[Population of<br/>prompting strategies] --> B[Generate answers]
-    B --> C[Score on dev split]
-    C --> D[Keep the best,<br/>breed and mutate the rest]
-    D --> A
-    C --> E[Collect the winner's<br/>correct answers on train]
-    E --> F[Train a LoRA adapter]
-    F --> G{Dev score<br/>holds up?}
-    G -- yes --> H[Keep adapter]
-    G -- no --> I[Roll back]
-    H --> A
-    I --> A
+flowchart TD
+subgraph S["1. Search"]
+direction LR
+A[Prompting<br/>strategies] --> B[Generate answers,<br/>score on dev]
+B --> C[Keep the best,<br/>breed and mutate]
+C --> A
+end
+subgraph D["2. Distill"]
+direction LR
+E[Winner's correct<br/>answers on train] --> F[Train a<br/>LoRA adapter]
+end
+subgraph K["3. Check"]
+direction LR
+G{Dev score<br/>holds up?} -- yes --> H[Keep adapter]
+G -- no --> I[Roll back]
+end
+S --> D --> K
 ```
 
 ## The idea in plain English
