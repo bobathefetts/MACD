@@ -1,0 +1,4 @@
+# Mock backend: no GPU, no network. Use it for tests and CI.
+model:
+  name: mock
+  backend: mock
