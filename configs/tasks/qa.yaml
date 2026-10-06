@@ -1,0 +1,13 @@
+task:
+  name: toy_qa
+  type: qa
+  data:
+    train_path: data/qa/train.jsonl   # few-shot pool + distillation source
+    dev_path: data/qa/dev.jsonl       # strategy selection + adapter gating
+    test_path: data/qa/test.jsonl     # held out; reporting only
+search:
+  population: 8
+  top_k: 3
+  generations: 2
+training:
+  distill_threshold: 0.6

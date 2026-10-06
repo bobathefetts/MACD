@@ -1,0 +1,17 @@
+# In-process Hugging Face model with real LoRA fine-tuning.
+# Needs: pip install -e ".[hf]"  and, for an 8B model, an NVIDIA GPU with ~10 GB+ free.
+model:
+  name: llama-3.1-8b-lora
+  backend: hf
+  params:
+    model_id: meta-llama/Llama-3.1-8B-Instruct   # any causal LM on the Hub or a local folder
+    device_map: auto
+    dtype: auto
+    load_in_4bit: true          # QLoRA-style loading; ignored when CUDA is absent
+    batch_size: 8
+    train_batch_size: 4
+    max_seq_len: 1024
+    lora_alpha_ratio: 2.0
+    lora_dropout: 0.05
+    target_modules: all-linear
+    local_files_only: false     # true on air-gapped machines with the model pre-staged

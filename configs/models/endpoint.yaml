@@ -1,0 +1,17 @@
+# Any OpenAI-compatible server: vLLM, Ollama, llama.cpp server, LM Studio.
+model:
+  name: local-endpoint
+  backend: openai_compat
+  params:
+    base_url: http://localhost:8000/v1
+    model: meta-llama/Llama-3.1-8B-Instruct   # the name your server exposes
+    api_key_env: MACD_API_KEY                 # env var holding the key, if the server needs one
+    concurrency: 8
+    timeout: 120
+    # Distillation is off unless you add a trainer. With the block below,
+    # adapters are trained locally with PEFT and hot-loaded into vLLM
+    # (start vLLM with --enable-lora and VLLM_ALLOW_RUNTIME_LORA_UPDATING=True).
+    # lora_load: true
+    # trainer:
+    #   model_id: meta-llama/Llama-3.1-8B-Instruct
+    #   load_in_4bit: true

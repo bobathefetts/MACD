@@ -1,0 +1,14 @@
+task:
+  name: toy_summarization
+  type: summarization
+  data:
+    train_path: data/summarization/train.jsonl
+    dev_path: data/summarization/dev.jsonl
+    test_path: data/summarization/test.jsonl
+search:
+  population: 6
+  top_k: 2
+  generations: 2
+training:
+  distill_threshold: 0.5
+  min_examples: 3

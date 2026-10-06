@@ -1,2 +1,0 @@
-# OpenAI dependencies - required for OpenAI model integration
-openai==1.12.0
