@@ -1,0 +1,14 @@
+# Reference values. Each task YAML may override the `search` and `training`
+# blocks; anything it leaves out falls back to these defaults (defined in
+# macd/config.py, which is the source of truth).
+search:
+  population: 8
+  top_k: 3
+  generations: 2
+  mutation_strength: 0.15
+  crossover_rate: 0.5
+training:
+  distill_threshold: 0.6    # minimum reward for a sample to be distilled
+  min_improvement: 0.001    # dev gain needed before distilling again
+  min_examples: 4           # do not train on fewer curated samples than this
+  regression_tolerance: 0.0 # how much dev may drop before an adapter is rolled back
